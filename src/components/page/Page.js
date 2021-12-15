@@ -11,20 +11,22 @@ const Page = () => {
   const imageLink = params.imageLink
 
   const [isLoading, setIsLoading] = useState(true)
-  const [image, setImage] = useState(null)
+  const [puzzleImage, setPuzzleImage] = useState(null)
+  const [charImages, setCharImages] = useState(null)
 
   useEffect(() => {
     const imageToSet = puzzleImages.find(img => img.link === imageLink)
-    setImage(imageToSet)
+    setPuzzleImage(imageToSet)
     setIsLoading(false)
+    setCharImages(characterImages)
   }, [imageLink])
 
   return (
     <>
-      {!isLoading && 
+      {!isLoading &&
         <>
-          <Header />
-          <ImgBox image={image} />
+          <Header pageImage={puzzleImage.name} charImages={charImages} />
+          <ImgBox image={puzzleImage} />
         </>
       }
     </>
