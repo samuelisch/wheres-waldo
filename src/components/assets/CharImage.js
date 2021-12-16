@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
 const StyledContainer = styled.div`
-  padding: 0 10px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
