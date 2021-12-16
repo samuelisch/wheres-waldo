@@ -3,16 +3,17 @@ import styled from 'styled-components'
 import CharImage from './CharImage'
 
 const StyledHeader = styled.div`
-  padding: 10px;
   background: rgb(0, 150, 255);
   display: flex;
   justify-content: space-between;
   position: fixed;
   width: 100%;
+  height: 75px;
 
   h1 {
     font-size: 2rem;
-    padding-right: 50px;
+    margin: auto 0;
+    padding: 0 50px 0 10px;
   }
 `
 
@@ -28,6 +29,10 @@ const StyledCharacters = styled.div`
   }
 `
 
+const HeaderSpace = styled.div`
+  height: 75px;
+`
+
 const Header = ({ pageImage, charImages }) => {
   const [pageTitle, setPageTitle] = useState('Find Waldo')
 
@@ -38,19 +43,24 @@ const Header = ({ pageImage, charImages }) => {
   }, [pageImage])
 
   return (
-    <StyledHeader>
-      <h1 id="title">{pageTitle}</h1>
-      {charImages &&
-        <StyledCharacters>
-          {charImages.map(img => (
-            <CharImage
-              key={img.id}
-              image={img}
-            />
-          ))}
-        </StyledCharacters>
-      }
-    </StyledHeader>
+    <>
+      <StyledHeader>
+        <h1 id="title">{pageTitle}</h1>
+        {charImages &&
+          <StyledCharacters>
+            {charImages.map(img => (
+              <CharImage
+                key={img.id}
+                image={img}
+              />
+            ))}
+          </StyledCharacters>
+        }
+      </StyledHeader>
+      <HeaderSpace>
+        &nbsp;
+      </HeaderSpace>
+    </>
   )
 }
 
