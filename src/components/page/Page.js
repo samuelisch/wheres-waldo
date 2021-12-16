@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import styled from 'styled-components'
 import puzzleImages from '../images/puzzleImages'
 import characterImages from '../images/characterImages'
 import ImgBox from './ImgBox'
