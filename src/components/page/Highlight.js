@@ -17,10 +17,6 @@ const Highlight = ({ hidden, position }) => {
     setBoxPosition(position)
   }, [position])
 
-  useEffect(() => {
-    
-  })
-
   return (
     <StyledSelect 
       className={"cursor " + (hidden ? 'hidden' : ' ')} 
