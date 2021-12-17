@@ -1,11 +1,16 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import Highlight from './Highlight'
 
 const StyledContainer = styled.div`
   width: 100%;
   padding: 20px 0;
   max-width: 1440px;
   margin: 0 auto;
+
+  .hidden {
+    opacity: 0;
+  }
 `
 
 const StyledImg = styled.img`
@@ -13,6 +18,12 @@ const StyledImg = styled.img`
 `
 
 const ImgBox = ({ image }) => {
+  const [hideBox, setHideBox] = useState(true)
+  const [boxCoords, setBoxCoords] = useState({
+    x: undefined,
+    y: undefined,
+  })
+
   const [size, setSize] = useState({
     width: undefined,
     height: undefined,
@@ -40,6 +51,11 @@ const ImgBox = ({ image }) => {
       x: relativeX,
       y: relativeY
     })
+    setBoxCoords({
+      x: e.pageX,
+      y: e.pageY
+    })
+    setHideBox(false)
   }
 
   const showComparison = () => {
@@ -54,6 +70,7 @@ const ImgBox = ({ image }) => {
   return (
     <>
       <StyledContainer>
+        <Highlight hidden={hideBox} position={boxCoords} />
         <StyledImg  
           className="puzzleImage" 
           src={image.imgSrc.default} 
