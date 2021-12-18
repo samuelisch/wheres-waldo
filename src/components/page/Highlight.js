@@ -23,14 +23,16 @@ const StyledSelect = styled.div`
 
 const Highlight = ({ hidden, position }) => {
   const [boxPosition, setBoxPosition] = useState(position)
+  const [hideElement, setHideElement] = useState(hidden)
 
   useEffect(() => {
     setBoxPosition(position)
-  }, [position])
+    setHideElement(hidden)
+  }, [position, hidden])
 
   return (
     <StyledContainer 
-      className={(hidden ? 'hidden' : ' ')}
+      className={(hideElement ? 'hidden' : ' ')}
       style={{
         left: `${boxPosition.x}px`,
         top: `${boxPosition.y}px`,
