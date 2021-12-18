@@ -9,6 +9,7 @@ const StyledHeader = styled.div`
   position: fixed;
   width: 100%;
   height: 75px;
+  z-index: 5;
 
   h1 {
     font-size: 2rem;
