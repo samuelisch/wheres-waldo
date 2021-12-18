@@ -5,9 +5,10 @@ const StyledSelect = styled.div`
   width: 40px;
   height: 40px;
   border: 2px solid #121212;
-  border-radius: 100%;
+  border-radius: 50%;
   position: absolute;
   transform: translate(-50%, -50%);
+  pointer-events: none;
 `
 
 const Highlight = ({ hidden, position }) => {
@@ -18,13 +19,15 @@ const Highlight = ({ hidden, position }) => {
   }, [position])
 
   return (
-    <StyledSelect 
-      className={"cursor " + (hidden ? 'hidden' : ' ')} 
-      style={{
-        left: `${boxPosition.x}px`,
-        top: `${boxPosition.y}px`,
-      }} 
-    />
+    <div>
+      <StyledSelect 
+        className={"cursor " + (hidden ? 'hidden' : ' ')} 
+        style={{
+          left: `${boxPosition.x}px`,
+          top: `${boxPosition.y}px`,
+        }} 
+      />
+    </div>
   )
 }
 
