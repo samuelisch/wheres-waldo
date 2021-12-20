@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import Highlight from './Highlight'
+import Result from './Result'
 import axios from 'axios'
 
 const StyledContainer = styled.div`
@@ -28,6 +29,16 @@ const ImgBox = ({ image, foundCharacter, charImages }) => {
     x: undefined,
     y: undefined,
   })
+  const [result, setResult] = useState(null)
+
+  useEffect(() => {
+    if (result) {
+      const timer = setTimeout(() => {
+        setResult(null)
+      }, 2000)
+      return () => clearTimeout(timer)
+    }
+  }, [result])
 
   const showCoords = (e) => {
     if (hideBox) {
@@ -56,6 +67,14 @@ const ImgBox = ({ image, foundCharacter, charImages }) => {
     }
   }
 
+  const displayResult = (name) => {
+    if (name) {
+      setResult('success')
+    } else {
+      setResult('fail')
+    }
+  }
+
   const selectionEvent = (name) => {
     setHideBox(true)
     const lowerCase = (name) => {
@@ -67,11 +86,19 @@ const ImgBox = ({ image, foundCharacter, charImages }) => {
       coords: {x: actualCoords['x'], y: actualCoords['y']}
     }
     axios.post(`http://localhost:3001/api/characters/${image.link}`, character)
-      .then(response => foundCharacter(name, response.data))
+      .then(response => {
+        if (response.data) {
+          foundCharacter(name, response.data)
+          displayResult(true)
+        } else {
+          displayResult(false)
+        }
+      })
   }
 
   return (
     <>
+      <Result result={result} />
       <StyledContainer>
         <Highlight 
           hidden={hideBox} 
