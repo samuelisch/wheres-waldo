@@ -14,10 +14,14 @@ const Page = () => {
   const [charImages, setCharImages] = useState(null)
 
   useEffect(() => {
+    const addFound = (images) => {
+      return images.map(image => ({...image, found: false}))
+    }
+
     const imageToSet = puzzleImages.find(img => img.link === imageLink)
     setPuzzleImage(imageToSet)
+    setCharImages(addFound(characterImages))
     setIsLoading(false)
-    setCharImages(characterImages)
   }, [imageLink])
 
   const foundCharacter = (name, found) => {
