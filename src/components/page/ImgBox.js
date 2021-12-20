@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import Highlight from './Highlight'
+import axios from 'axios'
 
 const StyledContainer = styled.div`
   width: 100%;
@@ -9,7 +10,7 @@ const StyledContainer = styled.div`
   margin: 0 auto;
 
   .hidden {
-    opacity: 0;
+    display: none;
   }
 `
 
@@ -17,60 +18,66 @@ const StyledImg = styled.img`
   width: 100%;
 `
 
-const ImgBox = ({ image }) => {
+const ImgBox = ({ image, foundCharacter }) => {
   const [hideBox, setHideBox] = useState(true)
+  const [actualCoords, setActualCoords] = useState({
+    x: undefined,
+    y: undefined
+  })
   const [boxCoords, setBoxCoords] = useState({
     x: undefined,
     y: undefined,
   })
 
-  const [size, setSize] = useState({
-    width: undefined,
-    height: undefined,
-  })
-
-  const [click, setClick] = useState({
-    x: undefined,
-    y: undefined,
-  })
-
   const showCoords = (e) => {
-    const puzzle = e.target
-    console.log('size: ', puzzle.width, puzzle.height)
-    console.log('coords: ', e.pageX, e.pageY)
-    console.log('top: ', puzzle.offsetTop)
-    console.log('left: ', puzzle.offsetLeft)
-    const relativeX = e.pageX - puzzle.offsetLeft
-    const relativeY = e.pageY - puzzle.offsetTop
-    console.log('relative coords: ', relativeX, relativeY)
-    setSize({
-      width: puzzle.width,
-      height: puzzle.height
-    })
-    setClick({
-      x: relativeX,
-      y: relativeY
-    })
-    setBoxCoords({
-      x: e.pageX,
-      y: e.pageY
-    })
-    setHideBox(false)
+    if (hideBox) {
+      const puzzle = e.target
+      console.log('size: ', puzzle.width, puzzle.height)
+      console.log('coords: ', e.pageX, e.pageY)
+      const relativeX = e.pageX - puzzle.offsetLeft
+      const relativeY = e.pageY - puzzle.offsetTop
+      const widthRatio = 1440 / puzzle.width
+      const heightRatio = 924 / puzzle.height
+      const actualX = Math.round(relativeX * widthRatio)
+      const actualY = Math.round(relativeY * heightRatio)
+      console.log(`ratio of diff is ${widthRatio}, ${heightRatio}`)
+      console.log(`actual coords is ${actualX}, ${actualY}`)
+      setBoxCoords({
+        x: e.pageX,
+        y: e.pageY
+      })
+      setActualCoords({
+        x: actualX,
+        y: actualY
+      })
+      setHideBox(false)
+    } else {
+      setHideBox(true)
+    }
   }
 
-  const showComparison = () => {
-    console.log(`size of window: ${size.width}, ${size.height}`)
-    const widthRatio = 1440 / size.width
-    const heightRatio = 924 / size.height
-    console.log(`ratio of diff is ${widthRatio}, ${heightRatio}`)
-    console.log(`click area is ${click.x}, ${click.y}`)
-    console.log(`relative click is ${Math.round(click.x * widthRatio)}, ${Math.round(click.y * heightRatio)}`)
+  const selectionEvent = (name) => {
+    setHideBox(true)
+    const lowerCase = (name) => {
+      return name.split('').map(letter => letter.toLowerCase()).join('')
+    }
+
+    const character = {
+      name: lowerCase(name),
+      coords: {x: actualCoords['x'], y: actualCoords['y']}
+    }
+    axios.post(`http://localhost:3001/api/characters/${image.link}`, character)
+      .then(response => foundCharacter(name, response.data))
   }
 
   return (
     <>
       <StyledContainer>
-        <Highlight hidden={hideBox} position={boxCoords} />
+        <Highlight 
+          hidden={hideBox} 
+          position={boxCoords}
+          selectionEvent={selectionEvent}
+        />
         <StyledImg  
           className="puzzleImage" 
           src={image.imgSrc.default} 
@@ -78,7 +85,6 @@ const ImgBox = ({ image }) => {
           onClick={showCoords}  
         />
       </StyledContainer>
-      <button type="button" onClick={showComparison}>Show comparison</button>
     </>
   )
 }
