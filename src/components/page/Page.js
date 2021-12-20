@@ -20,12 +20,19 @@ const Page = () => {
     setCharImages(characterImages)
   }, [imageLink])
 
+  const foundCharacter = (name, found) => {
+    let copyCharImages = [...charImages]
+    let char = copyCharImages.filter(character => character.name === name)
+    char[0].found = found
+    setCharImages(copyCharImages.map(character => character.id !== char.id ? character : char))
+  }
+
   return (
     <>
       {!isLoading &&
         <>
           <Header pageImage={puzzleImage.name} charImages={charImages} />
-          <ImgBox image={puzzleImage} />
+          <ImgBox image={puzzleImage} foundCharacter={foundCharacter} />
         </>
       }
     </>
