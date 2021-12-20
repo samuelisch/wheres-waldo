@@ -21,7 +21,7 @@ const StyledSelect = styled.div`
   }
 `
 
-const Highlight = ({ hidden, position, selectionEvent }) => {
+const Highlight = ({ hidden, position, selectionEvent, charImages }) => {
   const [boxPosition, setBoxPosition] = useState(position)
   const [hideElement, setHideElement] = useState(hidden)
 
@@ -41,6 +41,7 @@ const Highlight = ({ hidden, position, selectionEvent }) => {
       <StyledSelect />
       <SelectionBox 
         selectionEvent={selectionEvent}
+        charImages={charImages}
       />
     </StyledContainer>
   )

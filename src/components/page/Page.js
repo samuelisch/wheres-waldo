@@ -36,7 +36,7 @@ const Page = () => {
       {!isLoading &&
         <>
           <Header pageImage={puzzleImage.name} charImages={charImages} />
-          <ImgBox image={puzzleImage} foundCharacter={foundCharacter} />
+          <ImgBox image={puzzleImage} foundCharacter={foundCharacter} charImages={charImages} />
         </>
       }
     </>

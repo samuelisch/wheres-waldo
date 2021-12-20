@@ -18,7 +18,7 @@ const StyledImg = styled.img`
   width: 100%;
 `
 
-const ImgBox = ({ image, foundCharacter }) => {
+const ImgBox = ({ image, foundCharacter, charImages }) => {
   const [hideBox, setHideBox] = useState(true)
   const [actualCoords, setActualCoords] = useState({
     x: undefined,
@@ -77,6 +77,7 @@ const ImgBox = ({ image, foundCharacter }) => {
           hidden={hideBox} 
           position={boxCoords}
           selectionEvent={selectionEvent}
+          charImages={charImages}
         />
         <StyledImg  
           className="puzzleImage" 

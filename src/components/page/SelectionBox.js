@@ -1,9 +1,8 @@
 import React from 'react'
-import characterImages from '../images/characterImages'
 import SelectionTab from './SelectionTab'
 
-const SelectionBox = ({ selectionEvent }) => {
-  const toFind = characterImages.filter(character => !character.found)
+const SelectionBox = ({ selectionEvent, charImages }) => {
+  const toFind = charImages.filter(character => !character.found)
   const tab = toFind.map(character => (
     <SelectionTab
       selectionEvent={selectionEvent}
