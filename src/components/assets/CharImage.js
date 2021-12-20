@@ -25,7 +25,7 @@ const CharImage = ({ image }) => {
 
   useEffect(() => {
     setShowImage(!image.found)
-  }, [image])
+  }, [image.found])
 
   return (
     <StyledContainer showChar={showImage} >
