@@ -13,19 +13,16 @@ const characterImages = [
     id: uuidv4(),
     name: 'Waldo',
     imgSrc: images['waldo.png'],
-    found: false
   },
   {
     id: uuidv4(),
     name: 'Odlaw',
     imgSrc: images['odlaw.png'],
-    found: false
   },
   {
     id: uuidv4(),
     name: 'Whitebeard',
     imgSrc: images['whitebeard.png'],
-    found: false
   }
 ]
 
