@@ -24,10 +24,10 @@ const Page = () => {
     setIsLoading(false)
   }, [imageLink])
 
-  const foundCharacter = (name, found) => {
+  const foundCharacter = (name) => {
     let copyCharImages = [...charImages]
     let char = copyCharImages.filter(character => character.name === name)
-    char[0].found = found
+    char[0].found = true
     setCharImages(copyCharImages.map(character => character.id !== char.id ? character : char))
   }
 
