@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import { formatTime } from "./utils"
 
 const StyledTimer = styled.p`
   font-size: 2rem;
@@ -11,7 +12,7 @@ const StyledTimer = styled.p`
 
 const Timer = ({ timer }) => {
   return (
-    <StyledTimer>{timer}</StyledTimer>
+    <StyledTimer>{formatTime(timer)}</StyledTimer>
   )
 }
 
