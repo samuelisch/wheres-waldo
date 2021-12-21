@@ -12,14 +12,13 @@ const Page = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [puzzleImage, setPuzzleImage] = useState(null)
   const [charImages, setCharImages] = useState(null)
-  const [timer, setTimer] = useState('00:00:00')
+  const [timer, setTimer] = useState('00:00')
   const [timerActive, setTimerActive] = useState(false)
 
   useEffect(() => {
     const addFound = (images) => {
       return images.map(image => ({...image, found: false}))
     }
-
     const imageToSet = puzzleImages.find(img => img.link === imageLink)
     setPuzzleImage(imageToSet)
     setCharImages(addFound(characterImages))
@@ -31,6 +30,12 @@ const Page = () => {
     let char = copyCharImages.filter(character => character.name === name)
     char[0].found = true
     setCharImages(copyCharImages.map(character => character.id !== char.id ? character : char))
+  }
+
+  //TIMER functions
+  const timerToggleHandler = () => {
+    setTimerActive(!timer)
+    console.log('timer started')
   }
 
   return (
@@ -46,6 +51,8 @@ const Page = () => {
             image={puzzleImage} 
             foundCharacter={foundCharacter} 
             charImages={charImages} 
+            timer={timer}
+            timerToggle={timerToggleHandler}
           />
         </>
       }
