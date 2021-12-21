@@ -19,6 +19,12 @@ const StyledContainer = styled.div`
 const StyledImgContainer = styled.div`
   width: 100%;
   position: relative;
+  border: 1px solid ${
+    props => props.result === null 
+    ? "transparent" 
+    : props.result === 'success' 
+    ? "green" : "red"
+  };
 `
 
 const StyledImg = styled.img`
@@ -48,8 +54,6 @@ const ImgBox = ({ image, foundCharacter, charImages, timer, timerToggle }) => {
       return () => clearTimeout(timer)
     }
   }, [result])
-
-  //timer for whole application
 
   const showCoords = (e) => {
     if (hideBox) {
@@ -129,7 +133,7 @@ const ImgBox = ({ image, foundCharacter, charImages, timer, timerToggle }) => {
           selectionEvent={selectionEvent}
           charImages={charImages}
         />
-        <StyledImgContainer className="container">
+        <StyledImgContainer className="container" result={result}>
           {gameBlur &&
             <ImgBlur 
               timer ={timer} 
