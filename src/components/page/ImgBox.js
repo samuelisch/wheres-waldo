@@ -43,16 +43,12 @@ const ImgBox = ({ image, foundCharacter, charImages }) => {
   const showCoords = (e) => {
     if (hideBox) {
       const puzzle = e.target
-      console.log('size: ', puzzle.width, puzzle.height)
-      console.log('coords: ', e.pageX, e.pageY)
       const relativeX = e.pageX - puzzle.offsetLeft
       const relativeY = e.pageY - puzzle.offsetTop
       const widthRatio = 1440 / puzzle.width
       const heightRatio = 924 / puzzle.height
       const actualX = Math.round(relativeX * widthRatio)
       const actualY = Math.round(relativeY * heightRatio)
-      console.log(`ratio of diff is ${widthRatio}, ${heightRatio}`)
-      console.log(`actual coords is ${actualX}, ${actualY}`)
       setBoxCoords({
         x: e.pageX,
         y: e.pageY
