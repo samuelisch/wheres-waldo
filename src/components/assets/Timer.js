@@ -6,6 +6,7 @@ const StyledTimer = styled.p`
   display: flex;
   align-items: center;
   color: rgb(240, 240, 240);
+  padding-left: 20px;
 `
 
 const Timer = ({ timer }) => {
