@@ -35,7 +35,7 @@ const Page = () => {
   //TIMER functions
   const timerToggleHandler = () => {
     setTimerActive(!timer)
-    console.log('timer started')
+    console.log('timer toggle')
   }
 
   return (

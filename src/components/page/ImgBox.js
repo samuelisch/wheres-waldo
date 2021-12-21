@@ -52,8 +52,6 @@ const ImgBox = ({ image, foundCharacter, charImages, timer, timerToggle }) => {
   //timer for whole application
 
   const showCoords = (e) => {
-    console.log('clicked')
-    console.log(hideBox)
     if (hideBox) {
       const container = document.querySelector(".container") // as container is relative positioned
       const puzzle = e.target
@@ -63,7 +61,6 @@ const ImgBox = ({ image, foundCharacter, charImages, timer, timerToggle }) => {
       const heightRatio = 924 / puzzle.height
       const actualX = Math.round(relativeX * widthRatio)
       const actualY = Math.round(relativeY * heightRatio)
-      console.log(`x: ${actualX}, y: ${actualY}`)
       setBoxCoords({
         x: e.pageX,
         y: e.pageY
@@ -90,6 +87,7 @@ const ImgBox = ({ image, foundCharacter, charImages, timer, timerToggle }) => {
     if (charImages.every(image => image.found)) {
       timerToggle() //END GAME
       setGameEnd(true)
+      setGameBlur(true)
     } else {
       displayResult(true)
     }
