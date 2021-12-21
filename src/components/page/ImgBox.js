@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Highlight from './Highlight'
 import Result from './Result'
 import axios from 'axios'
+import ImgBlur from './ImgBlur'
 
 const StyledContainer = styled.div`
   width: 100%;
@@ -15,12 +16,19 @@ const StyledContainer = styled.div`
   }
 `
 
+const StyledImgContainer = styled.div`
+  width: 100%;
+  position: relative;
+`
+
 const StyledImg = styled.img`
   width: 100%;
 `
 
-const ImgBox = ({ image, foundCharacter, charImages }) => {
+const ImgBox = ({ image, foundCharacter, charImages, timer, timerToggle }) => {
   const [hideBox, setHideBox] = useState(true)
+  const [gameEnd, setGameEnd] = useState(false)
+  const [gameBlur, setGameBlur] = useState(true)
   const [actualCoords, setActualCoords] = useState({
     x: undefined,
     y: undefined
@@ -44,14 +52,18 @@ const ImgBox = ({ image, foundCharacter, charImages }) => {
   //timer for whole application
 
   const showCoords = (e) => {
+    console.log('clicked')
+    console.log(hideBox)
     if (hideBox) {
+      const container = document.querySelector(".container") // as container is relative positioned
       const puzzle = e.target
-      const relativeX = e.pageX - puzzle.offsetLeft
-      const relativeY = e.pageY - puzzle.offsetTop
+      const relativeX = e.pageX - container.offsetLeft
+      const relativeY = e.pageY - container.offsetTop
       const widthRatio = 1440 / puzzle.width
       const heightRatio = 924 / puzzle.height
       const actualX = Math.round(relativeX * widthRatio)
       const actualY = Math.round(relativeY * heightRatio)
+      console.log(`x: ${actualX}, y: ${actualY}`)
       setBoxCoords({
         x: e.pageX,
         y: e.pageY
@@ -76,7 +88,8 @@ const ImgBox = ({ image, foundCharacter, charImages }) => {
 
   const isAllFound = () => {
     if (charImages.every(image => image.found)) {
-      console.log('all found')
+      timerToggle() //END GAME
+      setGameEnd(true)
     } else {
       displayResult(true)
     }
@@ -103,6 +116,11 @@ const ImgBox = ({ image, foundCharacter, charImages }) => {
       })
   }
 
+  const startHandler = () => {
+    timerToggle()
+    setGameBlur(false)
+  }
+
   return (
     <>
       <Result result={result} />
@@ -113,12 +131,21 @@ const ImgBox = ({ image, foundCharacter, charImages }) => {
           selectionEvent={selectionEvent}
           charImages={charImages}
         />
-        <StyledImg  
-          className="puzzleImage" 
-          src={image.imgSrc.default} 
-          alt={image.name} 
-          onClick={showCoords}  
-        />
+        <StyledImgContainer className="container">
+          {gameBlur &&
+            <ImgBlur 
+              timer ={timer} 
+              gameEnd={gameEnd} 
+              btnClickHandler={startHandler} 
+            />
+          }
+          <StyledImg  
+            className="puzzleImage" 
+            src={image.imgSrc.default} 
+            alt={image.name} 
+            onClick={showCoords}  
+          />
+        </StyledImgContainer>
       </StyledContainer>
     </>
   )
