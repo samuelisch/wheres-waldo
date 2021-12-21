@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import puzzleImages from '../images/puzzleImages'
 import characterImages from '../images/characterImages'
@@ -12,8 +12,9 @@ const Page = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [puzzleImage, setPuzzleImage] = useState(null)
   const [charImages, setCharImages] = useState(null)
-  const [timer, setTimer] = useState('00:00')
+  const [timer, setTimer] = useState(0)
   const [timerActive, setTimerActive] = useState(false)
+  const counterRef = useRef(null)
 
   useEffect(() => {
     const addFound = (images) => {
@@ -33,9 +34,26 @@ const Page = () => {
   }
 
   //TIMER functions
+  const handleStart = () => {
+    setTimerActive(true)
+    counterRef.current = setInterval(() => {
+      setTimer(timer => timer + 1)
+    }, 1000)
+  }
+
+  const handleStop = () => {
+    if (timerActive) {
+      setTimerActive(false)
+      clearInterval(counterRef.current)
+    }
+  }
+
   const timerToggleHandler = () => {
-    setTimerActive(!timer)
-    console.log('timer toggle')
+    if (timerActive) {
+      handleStop()
+    } else {
+      handleStart()
+    }
   }
 
   return (
@@ -46,6 +64,7 @@ const Page = () => {
             pageImage={puzzleImage.name} 
             charImages={charImages} 
             timer={timer}
+            stopTmer={handleStop}
           />
           <ImgBox 
             image={puzzleImage} 

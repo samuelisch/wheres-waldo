@@ -30,7 +30,7 @@ const HeaderSpace = styled.div`
   height: 75px;
 `
 
-const Header = ({ charImages, timer }) => {
+const Header = ({ charImages, timer, stopTimer }) => {
   return (
     <>
       <StyledHeader>
@@ -39,7 +39,7 @@ const Header = ({ charImages, timer }) => {
         }
         {charImages &&
           <>
-            <HomeButton />
+            <HomeButton stopTimer={stopTimer} />
             <Timer timer={timer} />
             <StyledCharacters>
               {charImages.map(img => (

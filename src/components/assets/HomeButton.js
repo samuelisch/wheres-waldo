@@ -21,10 +21,10 @@ const StyledContainer = styled.div`
   }
 `
 
-const HomeButton = () => {
+const HomeButton = ({ stopTimer }) => {
   return (
     <StyledContainer>
-      <Link to="/"><button>Return to Main</button></Link>
+      <Link to="/" onClick={() => stopTimer}><button>Return to Main</button></Link>
     </StyledContainer>
   )
 }
