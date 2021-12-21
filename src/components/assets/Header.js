@@ -13,9 +13,6 @@ const StyledHeader = styled.div`
   z-index: 5;
 
   h1 {
-    font-size: 2rem;
-    margin: auto 0;
-    padding: 0 50px 0 10px;
     display: none;
   }
 
@@ -24,6 +21,9 @@ const StyledHeader = styled.div`
 
     h1 {
       display: block;
+      padding: 0 50px 0 10px;
+      font-size: 2rem;
+      margin: auto 0;
     }
   }
 `
@@ -31,13 +31,6 @@ const StyledHeader = styled.div`
 const StyledCharacters = styled.div`
   display: flex;
   padding-right: 10px;
-
-  @media (min-width: 750px) {
-    padding: 0;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
 `
 
 const HeaderSpace = styled.div`
