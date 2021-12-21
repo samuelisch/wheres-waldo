@@ -31,6 +31,7 @@ const ImgBox = ({ image, foundCharacter, charImages }) => {
   })
   const [result, setResult] = useState(null)
 
+  //timer for displaying result of selection
   useEffect(() => {
     if (result) {
       const timer = setTimeout(() => {
@@ -39,6 +40,8 @@ const ImgBox = ({ image, foundCharacter, charImages }) => {
       return () => clearTimeout(timer)
     }
   }, [result])
+
+  //timer for whole application
 
   const showCoords = (e) => {
     if (hideBox) {
@@ -71,6 +74,14 @@ const ImgBox = ({ image, foundCharacter, charImages }) => {
     }
   }
 
+  const isAllFound = () => {
+    if (charImages.every(image => image.found)) {
+      console.log('all found')
+    } else {
+      displayResult(true)
+    }
+  }
+
   const selectionEvent = (name) => {
     setHideBox(true)
     const lowerCase = (name) => {
@@ -85,7 +96,7 @@ const ImgBox = ({ image, foundCharacter, charImages }) => {
       .then(response => {
         if (response.data) {
           foundCharacter(name, response.data)
-          displayResult(true)
+          isAllFound()
         } else {
           displayResult(false)
         }
