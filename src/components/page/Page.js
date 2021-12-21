@@ -12,6 +12,8 @@ const Page = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [puzzleImage, setPuzzleImage] = useState(null)
   const [charImages, setCharImages] = useState(null)
+  const [timer, setTimer] = useState('00:00:00')
+  const [timerActive, setTimerActive] = useState(false)
 
   useEffect(() => {
     const addFound = (images) => {
@@ -35,8 +37,16 @@ const Page = () => {
     <>
       {!isLoading &&
         <>
-          <Header pageImage={puzzleImage.name} charImages={charImages} />
-          <ImgBox image={puzzleImage} foundCharacter={foundCharacter} charImages={charImages} />
+          <Header 
+            pageImage={puzzleImage.name} 
+            charImages={charImages} 
+            timer={timer}
+          />
+          <ImgBox 
+            image={puzzleImage} 
+            foundCharacter={foundCharacter} 
+            charImages={charImages} 
+          />
         </>
       }
     </>
