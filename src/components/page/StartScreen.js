@@ -17,7 +17,7 @@ const StyledContainer = styled.div`
     border-radius: 5px;
     padding: 5px 10px;
     margin-top: 10px;
-    color: white;
+    color: rgb(250,250,250);
 
     &:hover {
       background: rgb(250, 120, 120);
