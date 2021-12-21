@@ -5,6 +5,7 @@ import SelectionBox from './SelectionBox'
 const StyledContainer = styled.div`
   position: absolute;
   display: flex;
+  z-index: 2;
 `
 
 const StyledSelect = styled.div`
