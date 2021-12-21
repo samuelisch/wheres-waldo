@@ -64,7 +64,7 @@ const Page = () => {
             pageImage={puzzleImage.name} 
             charImages={charImages} 
             timer={timer}
-            stopTmer={handleStop}
+            stopTimer={handleStop}
           />
           <ImgBox 
             image={puzzleImage} 

@@ -24,7 +24,7 @@ const StyledContainer = styled.div`
 const HomeButton = ({ stopTimer }) => {
   return (
     <StyledContainer>
-      <Link to="/" onClick={() => stopTimer}><button>Return to Main</button></Link>
+      <Link to="/" onClick={stopTimer}><button>Return to Main</button></Link>
     </StyledContainer>
   )
 }
