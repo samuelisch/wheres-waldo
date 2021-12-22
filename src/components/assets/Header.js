@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import CharImage from './CharImage'
 import Timer from './Timer'
 import HomeButton from './HomeButton'
+import Title from './Title'
 
 const StyledContainer = styled.div`
   background: rgb(240, 240, 240);
@@ -20,11 +21,6 @@ const StyledHeader = styled.div`
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 20px;
-
-  h1 {
-    margin: auto auto;
-    font-size: 3rem;
-  }
 `
 
 const StyledCharacters = styled.div`
@@ -41,7 +37,7 @@ const Header = ({ charImages, timer, stopTimer }) => {
       <StyledContainer>
         <StyledHeader game={charImages}>
           {!charImages && 
-            <h1 id="title">Find Waldo Game</h1>
+            <Title />
           }
           {charImages &&
             <>
