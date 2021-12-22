@@ -4,6 +4,7 @@ import Highlight from './Highlight'
 import Result from './Result'
 import axios from 'axios'
 import ImgBlur from './ImgBlur'
+import checkChoice from '../../services/checkService'
 
 const StyledContainer = styled.div`
   width: 100%;
@@ -107,10 +108,10 @@ const ImgBox = ({ image, foundCharacter, charImages, timer, timerToggle }) => {
       name: lowerCase(name),
       coords: {x: actualCoords['x'], y: actualCoords['y']}
     }
-    axios.post(`http://localhost:3001/api/characters/${image.link}`, character)
-      .then(response => {
-        if (response.data) {
-          foundCharacter(name, response.data)
+    checkChoice(image.link, character)
+      .then(returnedData => {
+        if (returnedData) {
+          foundCharacter(name, returnedData)
           isAllFound()
         } else {
           displayResult(false)
