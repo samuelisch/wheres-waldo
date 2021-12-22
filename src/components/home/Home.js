@@ -18,7 +18,7 @@ const Home = () => {
       <LoadingScreen />
     :
       <>
-        <Header />
+        <Header component="main" />
         <ImgGrid />
       </>
     }
