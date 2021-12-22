@@ -24,7 +24,7 @@ const BoardImgGrid = ({ toggleSelect }) => {
       />
     )))
     setIsLoading(false)
-  }, [])
+  }, [toggleSelect])
 
   return (
       isLoading ?
