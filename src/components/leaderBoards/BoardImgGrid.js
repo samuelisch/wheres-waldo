@@ -9,6 +9,8 @@ const StyledGrid = styled.div`
   justify-content: space-around;
   align-items: center;
   padding: 0 0 50px;
+  max-width: 1440px;
+  margin: 0 auto;
 `
 
 const BoardImgGrid = ({ toggleSelect }) => {

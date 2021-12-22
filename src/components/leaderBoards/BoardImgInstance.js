@@ -10,7 +10,7 @@ const StyledInstance = styled.div`
   margin-top: 20px;
 
   .selected {
-    box-shadow: 0 0 2px 2px rgb(150, 150, 150);
+    box-shadow: 0 0 4px 4px rgb(150, 150, 150);
   }
 
 `
