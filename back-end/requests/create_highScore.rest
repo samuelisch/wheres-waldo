@@ -1,8 +1,0 @@
-POST http://localhost:3001/api/leaderboards/snow-puzzle
-Content-Type: application/json
-
-{
-  "id": 4,
-  "name": "Odlaw",
-  "time": "00m:25s"
-}
