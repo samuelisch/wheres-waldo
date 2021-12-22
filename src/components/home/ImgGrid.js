@@ -8,7 +8,7 @@ const StyledGrid = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  padding: 50px 0;
+  padding: 0 0 50px;
 `
 
 const ImgGrid = () => {
