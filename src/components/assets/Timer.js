@@ -6,7 +6,7 @@ const StyledTimer = styled.p`
   font-size: 2rem;
   display: none;
   align-items: center;
-  color: rgb(240, 240, 240);
+  color: rgb(15, 15, 15);
 
   @media (min-width: 500px) {
     display: flex;

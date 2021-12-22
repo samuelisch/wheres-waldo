@@ -9,7 +9,6 @@ const StyledGrid = styled.div`
   justify-content: center;
   align-items: center;
   padding: 50px 0;
-  border: 3px solid green; ${/* temp */''}
 `
 
 const ImgGrid = () => {

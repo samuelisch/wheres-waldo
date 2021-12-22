@@ -5,11 +5,12 @@ import Timer from './Timer'
 import HomeButton from './HomeButton'
 
 const StyledContainer = styled.div`
-  background: rgb(0, 150, 255);
+  background: rgb(240, 240, 240);
   position: fixed;
   width: 100%;
   height: 75px;
   z-index: 5;
+  box-shadow: 0 1px 1px rgb(150, 150, 150);
 `
 
 const StyledHeader = styled.div`
@@ -38,9 +39,9 @@ const Header = ({ charImages, timer, stopTimer }) => {
   return (
     <>
       <StyledContainer>
-        <StyledHeader>
+        <StyledHeader game={charImages}>
           {!charImages && 
-            <h1 id="title">Where's Waldo?</h1>
+            <h1 id="title">Find Waldo Game</h1>
           }
           {charImages &&
             <>
