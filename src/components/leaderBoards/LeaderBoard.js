@@ -12,7 +12,6 @@ const LeaderBoard = () => {
     leaderboardServices
       .getAll()
       .then(initialList => {
-        console.log(initialList)
         setList(initialList)
       })
       .catch(error => console.log(error))
