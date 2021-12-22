@@ -31,15 +31,15 @@ const HeaderSpace = styled.div`
   height: 75px;
 `
 
-const Header = ({ charImages, timer, stopTimer }) => {
+const Header = ({ charImages, timer, stopTimer, component }) => {
   return (
     <>
       <StyledContainer>
-        <StyledHeader game={charImages}>
-          {!charImages && 
+        <StyledHeader>
+          {component === "main" && 
             <Title />
           }
-          {charImages &&
+          {component === "game" &&
             <>
               <HomeButton stopTimer={stopTimer} />
               <StyledCharacters>
@@ -51,6 +51,11 @@ const Header = ({ charImages, timer, stopTimer }) => {
                 ))}
               </StyledCharacters>
               <Timer timer={timer} />
+            </>
+          }
+          {component === "leaderboard" &&
+            <>
+              <HomeButton />
             </>
           }
         </StyledHeader>
