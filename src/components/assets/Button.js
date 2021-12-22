@@ -6,7 +6,7 @@ const StyledButton = styled.button`
   border: 2px solid #B2560D;
   border-radius: 5px;
   padding: 5px 10px;
-  margin-top: 10px;
+  margin: auto 0;
   color: rgb(250,250,250);
 
   &:hover {
@@ -16,16 +16,11 @@ const StyledButton = styled.button`
   &:active {
     background: rgb(250, 150, 150);
   }
-
-  @media (min-width: 750px) {
-    font-size: 2.5rem;
-    padding: 10px 20px;
-  }
 `
 
-const Button = ({ btnClickHandler, text }) => {
+const Button = ({ btnClickHandler, text, type, className }) => {
   return (
-    <StyledButton onClick={btnClickHandler}>{text}</StyledButton>
+    <StyledButton className={className} type={type} onClick={btnClickHandler}>{text}</StyledButton>
   )
 }
 
