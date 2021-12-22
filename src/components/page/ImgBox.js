@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import Highlight from './Highlight'
 import Result from './Result'
-import axios from 'axios'
 import ImgBlur from './ImgBlur'
 import checkChoice from '../../services/checkService'
 
