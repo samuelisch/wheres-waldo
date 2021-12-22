@@ -15,7 +15,7 @@ const StyledOuterContainer = styled.div`
   justify-content: center;
 `
 
-const ImgBlur = ({ gameEnd, btnClickHandler, timer }) => {
+const ImgBlur = ({ gameEnd, btnClickHandler, timer, position, submitHandler }) => {
   return(
       <StyledOuterContainer>
         <>
@@ -23,7 +23,7 @@ const ImgBlur = ({ gameEnd, btnClickHandler, timer }) => {
             <StartScreen btnClickHandler={btnClickHandler} />
           }
           {gameEnd &&
-            <EndScreen timer={timer} />
+            <EndScreen position={position} timer={timer} submitHandler={submitHandler} />
           }
         </>
       </StyledOuterContainer>

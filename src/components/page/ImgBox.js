@@ -4,6 +4,9 @@ import Highlight from './Highlight'
 import Result from './Result'
 import ImgBlur from './ImgBlur'
 import checkChoice from '../../services/checkService'
+import leaderboardServices from '../../services/leaderboardService'
+import { formatTime } from "../assets/utils"
+import { v4 as uuidv4 } from 'uuid'
 
 const StyledContainer = styled.div`
   width: 100%;
@@ -35,6 +38,7 @@ const ImgBox = ({ image, foundCharacter, charImages, timer, timerToggle }) => {
   const [hideBox, setHideBox] = useState(true)
   const [gameEnd, setGameEnd] = useState(false)
   const [gameBlur, setGameBlur] = useState(true)
+  const [leaderboardPosittion, setLeaderboardPosition] = useState(null)
   const [actualCoords, setActualCoords] = useState({
     x: undefined,
     y: undefined
@@ -87,9 +91,33 @@ const ImgBox = ({ image, foundCharacter, charImages, timer, timerToggle }) => {
     }
   }
 
+  const checkPosition = (timer, link) => {
+    const objTime = {time: timer}
+    leaderboardServices
+      .check(link, objTime)
+      .then(position => {
+        setLeaderboardPosition(position)
+      })
+  }
+
+  const submitHandler = (name) => {
+    const postObj = {
+      id: uuidv4(),
+      name: name,
+      positon: leaderboardPosittion,
+      time: timer,
+    }
+    leaderboardServices
+      .create(image.link, postObj)
+      .then(returnedData => {
+        console.log(returnedData)
+      })
+  }
+
   const isAllFound = () => {
     if (charImages.every(image => image.found)) {
       timerToggle() //END GAME
+      checkPosition(timer, image.link)
       setGameEnd(true)
       setGameBlur(true)
     } else {
@@ -136,9 +164,11 @@ const ImgBox = ({ image, foundCharacter, charImages, timer, timerToggle }) => {
         <StyledImgContainer className="container" result={result}>
           {gameBlur &&
             <ImgBlur 
-              timer ={timer} 
+              timer ={formatTime(timer)} 
               gameEnd={gameEnd} 
               btnClickHandler={startHandler} 
+              position={leaderboardPosittion}
+              submitHandler={submitHandler}
             />
           }
           <StyledImg  
