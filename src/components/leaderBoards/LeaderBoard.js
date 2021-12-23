@@ -10,12 +10,12 @@ const LeaderBoard = () => {
 
   useEffect(() => {
     leaderboardServices
-      .getAll()
+      .getOne(selectedImage)
       .then(initialList => {
         setList(initialList)
       })
       .catch(error => console.log(error))
-  }, [])
+  }, [selectedImage])
 
   const toggleSelect = (e, link) => {
     const images = document.querySelectorAll('.board-puzzle')
@@ -28,7 +28,7 @@ const LeaderBoard = () => {
     <>
       <Header component="leaderboard" />
       <BoardImgGrid toggleSelect={toggleSelect} />
-      <Board list={list} selection={selectedImage} />
+      <Board list={list} />
     </>
   )
 }

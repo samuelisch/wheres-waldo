@@ -42,7 +42,7 @@ const HeaderList = styled.li`
   background: rgb(200, 200, 200);
 `
 
-const Board = ({ list, selection }) => {
+const Board = ({ list }) => {
   return(
     <StyledContainer>
       <ul>
@@ -51,7 +51,7 @@ const Board = ({ list, selection }) => {
           <p className="heading time">Time</p>
         </HeaderList>
         {list &&
-          list[selection].map(entry => (
+          list.map(entry => (
             <BoardEntry
               key={entry.id}
               name={entry.name}

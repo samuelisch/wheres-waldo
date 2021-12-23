@@ -7,6 +7,11 @@ const getAll = () => {
   return request.then(response => response.data)
 }
 
+const getOne = (link) => {
+  const request = axios.get(`${url}/${link}`)
+  return request.then(response => response.data)
+}
+
 const create = (link, newObject) => {
   const request = axios.post(`${url}/${link}`, newObject)
   return request.then(response => response.data)
@@ -18,7 +23,8 @@ const check = (link, timing) => {
 }
 
 const leaderboardServices = {
-  getAll, 
+  getAll,
+  getOne, 
   create, 
   check
 }
