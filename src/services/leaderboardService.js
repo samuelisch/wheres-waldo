@@ -1,6 +1,6 @@
 //service for leaderboards component
 import axios from "axios"
-const url = 'http://localhost:3001/api/leaderboards'
+const url = '/api/leaderboards'
 
 const getAll = () => {
   const request = axios.get(url)

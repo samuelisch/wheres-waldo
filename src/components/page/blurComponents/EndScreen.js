@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
-import Button from "../assets/Button"
+import Button from "../../assets/Button"
 
 const StyledContainer = styled.div`
   margin-top: 10%;

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import Highlight from './Highlight'
-import Result from './Result'
-import ImgBlur from './ImgBlur'
+import Highlight from './selectionComponents/Highlight'
+import Result from './selectionComponents/Result'
+import ImgBlur from './blurComponents/ImgBlur'
 import checkChoice from '../../services/checkService'
 import leaderboardServices from '../../services/leaderboardService'
 import { formatTime } from "../assets/utils"

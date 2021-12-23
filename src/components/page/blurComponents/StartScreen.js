@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import Button from "../assets/Button"
+import Button from "../../assets/Button"
 
 const StyledContainer = styled.div`
   margin-top: 15%;
