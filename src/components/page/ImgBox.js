@@ -110,7 +110,7 @@ const ImgBox = ({ image, foundCharacter, charImages, timer, timerToggle }) => {
     leaderboardServices
       .create(image.link, postObj)
       .then(returnedData => {
-        console.log(returnedData)
+        return
       })
   }
 
