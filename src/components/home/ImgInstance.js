@@ -25,7 +25,7 @@ const StyledImg = styled.img`
 
 const ImgInstance = ({ puzzle }) => {
   return (
-    <Link to={`/game/${puzzle.link}`}>
+    <Link to={`game/${puzzle.link}`}>
       <StyledInstance>
         <StyledImg src={puzzle.imgSrc.default} />
       </StyledInstance>
