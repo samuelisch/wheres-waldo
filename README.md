@@ -1,70 +1,30 @@
-# Getting Started with Create React App
+# Where's Waldo? the game
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is my first MERN stack Application. It is bootstrapped with create-react-app, and I've used MongoDB Atlas to store, fetch and update data, with the use of Node.js Express.
 
-## Available Scripts
+## Access Deployment
+Live implementation deployed and accessible with [Heroku](https://wheres-waldo-samuelisch.herokuapp.com/)
 
-In the project directory, you can run:
+### Motivation
+I set out on this project to push myself towards deoploying my first Full Stack application, a huge jump from my previous [Shopping cart project](https://github.com/Samuelisch/shopping-cart). I had also learnt some back-end fundamentals from FullStackOpen, and wanted to implement what I've learnt outside a tutorial setting.
 
-### `yarn start`
+### Gameplay
+This application features three images for users to find waldo and his two friends with. The three images contain many characters, but have three recurring ones: 
+* Waldo
+* Odlaw
+* Whitebeard
+The user can resize their windows to get a bigger image, and select a place within the game's image. A request will be made to the backend to validate the user's choice. Feedback will be provided based on the validation's results.
+After finding all characters, the application will display the user's time taken to find all three characters. The user will then be given a choice to input his name and timing into the database. He is also given the choice to try again, or view the leaderboards.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Features
+This application makes use of commion React features, such as useState, useEffect hooks, and React Routers. Each page's content is updated as it loads, and requests to the server is made with each page, or component load. 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Complications (Fixed)
+I had complications in deployment due to two issues which have been fixed since:
+#### React Router Links - invalid GET request on page refresh.
+* Problem: The app would crash if I navigated to a Link defined in React Router, and refreshed the page. This is caused by Express routes not being defined, to match React Router's routing. As there were no routes defined in Express, it returns invalid, or crashed.
+* Solution: I served static files from my React application, and defined a request in Express (after all other requests), for all other routes '*', to be redirected to index.html.
 
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Application would return a timeour error (503) when making requests to MongoDB Atlas
+* Problem: A 503 Error would return after awhile after loading applicaiton pages that requests data from the server at MongoDB. I later found out that although I defined the environment vairables for development in file .env (.gitignored), the environment variable that defines the database URL in production was not set to Heroku.
+* Solution: Depploying database backend to Heroku production. Defined the database URL in production to Heroku with the heroku config:set command.
