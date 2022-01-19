@@ -13,11 +13,12 @@ This application features three images for users to find waldo and his two frien
 * Waldo
 * Odlaw
 * Whitebeard
+
 The user can resize their windows to get a bigger image, and select a place within the game's image. A request will be made to the backend to validate the user's choice. Feedback will be provided based on the validation's results.
 After finding all characters, the application will display the user's time taken to find all three characters. The user will then be given a choice to input his name and timing into the database. He is also given the choice to try again, or view the leaderboards.
 
 ### Features
-This application makes use of commion React features, such as useState, useEffect hooks, and React Routers. Each page's content is updated as it loads, and requests to the server is made with each page, or component load. 
+This application makes use of common React features, such as useState, useEffect hooks, and React Routers. Each page's content is updated as it loads, and requests to the server is made with each page, or component load. 
 
 ### Complications (Fixed)
 I had complications in deployment due to two issues which have been fixed since:
