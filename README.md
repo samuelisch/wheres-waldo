@@ -26,6 +26,6 @@ I had complications in deployment due to two issues which have been fixed since:
 * Problem: The app would crash if I navigated to a Link defined in React Router, and refreshed the page. This is caused by Express routes not being defined, to match React Router's routing. As there were no routes defined in Express, it returns invalid, or crashed.
 * Solution: I served static files from my React application, and defined a request in Express (after all other requests), for all other routes '*', to be redirected to index.html.
 
-### Application would return a timeour error (503) when making requests to MongoDB Atlas
+### Application would return a timeout error (503) when making requests to MongoDB Atlas
 * Problem: A 503 Error would return after awhile after loading applicaiton pages that requests data from the server at MongoDB. I later found out that although I defined the environment vairables for development in file .env (.gitignored), the environment variable that defines the database URL in production was not set to Heroku.
 * Solution: Depploying database backend to Heroku production. Defined the database URL in production to Heroku with the heroku config:set command.
